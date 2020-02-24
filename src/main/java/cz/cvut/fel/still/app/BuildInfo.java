@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @PropertySource("classpath:build.properties")
-public class BuildInfoService {
+public class BuildInfo {
     @Value("${application-description}")
     @Getter
     private String applicationDescription;

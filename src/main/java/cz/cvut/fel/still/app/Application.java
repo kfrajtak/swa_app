@@ -3,7 +3,6 @@ package cz.cvut.fel.still.app;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,7 +17,7 @@ import java.time.Instant;
 public class Application implements CommandLineRunner {
 
 	@Autowired
-	private BuildInfoService service;
+	private BuildInfo service;
 
 	@Autowired
 	private MailConfiguration mailConfiguration;
@@ -31,11 +30,7 @@ public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
 
-	    // SpringApplication.run(Application.class, args);
-
-        SpringApplication app = new SpringApplication(Application.class);
-        //app.setBannerMode(Banner.Mode.OFF);
-        app.run(args);
+	    SpringApplication.run(Application.class, args);
 	}
 
 	@Override

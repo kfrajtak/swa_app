@@ -15,7 +15,7 @@ import static org.junit.Assert.assertThat;
 @TestPropertySource(locations = "classpath:test.properties")
 public class BuildInfoServiceIntegrationTest {
     @Autowired
-    private BuildInfoService service;
+    private BuildInfo service;
 
     @Test
     void whenGetApplicationDescription_thenSuccess() {
