@@ -1,0 +1,35 @@
+version: '3'
+services:
+  config:
+    container_name: swa_app
+    image: swa-app-image
+    #mage: openjdk:15-jdk-alpine3.11
+    build:
+      context: .
+    volumes:
+      - "./target/app-0.0.1-SNAPSHOT.jar:/usr/app/app.jar"
+      - "./src/main/resources/application.properties:/usr/app/application.properties"
+    #  - "./elastic-apm-agent-1.13.0.jar:/opt/apm/apm-agent.jar"
+    ports:
+      - 9901:8080
+    networks:
+      - swa
+    #logging:
+    #  driver: fluentd
+    #  options:
+    #    fluentd-address: localhost:24224
+    environment:
+    - "ELASTIC_APM_SERVICE_NAME=swa-app"
+    - "ELASTIC_APM_APPLICATION_PACKAGES=cz.cvut.fel.still.app"
+    - "ELASTIC_APM_SERVER_URLS=http://apm:8200"
+    entrypoint:
+      - java
+      - -javaagent:/opt/apm/apm-agent.jar
+      - -jar
+      - /usr/app/app.jar
+      - --spring.config.location=/usr/app/application.properties
+
+networks:
+  swa:
+    external:
+      name: swa

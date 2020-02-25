@@ -1,5 +1,6 @@
 package cz.cvut.fel.still.app;
 
+import co.elastic.apm.attach.ElasticApmAttacher;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +29,11 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	private Environment env;
 
+	@Autowired
+	private PrintUsersTask printUsersTask;
+
 	public static void main(String[] args) {
+        ElasticApmAttacher.attach();
 
 	    SpringApplication.run(Application.class, args);
 	}
@@ -56,5 +61,7 @@ public class Application implements CommandLineRunner {
 
 		String s = "Here the function getAlphaNumericString(n) generates a random number of length a string. This number is an index of a Character and this Character is appended in temporary local variable sb. In the end sb is returned.";
 		log.info("toolong = {}", s + s + s + s);
+
+		printUsersTask.execute();
 	}
 }
