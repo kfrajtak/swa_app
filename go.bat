@@ -1,0 +1,1 @@
+java -javaagent:C:/Work/cvut/vyuka/swa/2020/labs/app/elastic-apm-agent-1.13.0.jar -jar target/app-0.0.1-SNAPSHOT.jar --spring.config.location=src/main/resources/application.properties -Delastic.apm.service_name=swa-app -Delastic.apm.application_packages=cz.cvut.fel.still.app -Delastic.apm.server_urls=http://localhost:8200

@@ -1,4 +1,4 @@
-package cz.cvut.fel.still.app;
+package cz.cvut.fel.still.app.services;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;

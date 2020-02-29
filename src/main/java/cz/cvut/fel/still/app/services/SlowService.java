@@ -1,17 +1,26 @@
-package cz.cvut.fel.still.app;
+package cz.cvut.fel.still.app.services;
 
 //import co.elastic.apm.api.CaptureSpan;
 //import co.elastic.apm.api.Traced;
-import brave.Span;
-import brave.Tracer;
 import co.elastic.apm.api.CaptureSpan;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j
 public class SlowService {
+
+    private final JsonConsumerService jsonConsumerService;
+    @Autowired
+    private BuildInfo buildInfo;
+
+    public SlowService(JsonConsumerService jsonConsumerService) {
+        this.jsonConsumerService = jsonConsumerService;
+    }
 
     @CaptureSpan("otherOperations")
     public void doWorkAndCaptureSpan() throws InterruptedException {
@@ -28,8 +37,17 @@ public class SlowService {
             newSpan.finish();
         }*/
 
+        //log.info("Message from REST service (1) = '{}'", jsonConsumerService.getMessageWebClient());
+        log.info("Message from REST service (1) = '{}'", jsonConsumerService.getMessageRestTemplate());
+
         //log.info("I'm in the original span");
         doWork();
+    }
+
+    @Async
+    public CompletableFuture<BuildInfo> doWorkAsync() throws InterruptedException {
+        doWorkAndCaptureSpan();
+        return CompletableFuture.completedFuture(buildInfo);
     }
 
     @CaptureSpan("another")

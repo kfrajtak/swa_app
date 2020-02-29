@@ -1,16 +1,14 @@
 package cz.cvut.fel.still.app;
 
+import cz.cvut.fel.still.app.services.BuildInfo;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.Assert.assertThat;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @TestPropertySource(locations = "classpath:test.properties")
 public class BuildInfoServiceIntegrationTest {

@@ -1,4 +1,4 @@
-package cz.cvut.fel.still.app;
+package cz.cvut.fel.still.app.tasks;
 
 import co.elastic.apm.api.CaptureSpan;
 import co.elastic.apm.api.CaptureTransaction;

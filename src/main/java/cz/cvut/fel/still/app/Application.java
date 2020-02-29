@@ -1,6 +1,9 @@
 package cz.cvut.fel.still.app;
 
 import co.elastic.apm.attach.ElasticApmAttacher;
+import cz.cvut.fel.still.app.configuration.MailConfiguration;
+import cz.cvut.fel.still.app.services.BuildInfo;
+import cz.cvut.fel.still.app.tasks.PrintUsersTask;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -39,7 +42,7 @@ public class Application implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+	public void run(String... args) {
 
 		log.error("Something else is wrong here");
 		log.trace("Logging at TRACE level");
