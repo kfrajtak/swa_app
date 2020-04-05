@@ -1,16 +1,21 @@
 package cz.cvut.fel.still.app;
 
+import cz.cvut.fel.still.app.configuration.TestApiConfig;
 import cz.cvut.fel.still.app.services.BuildInfo;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.Assert.assertThat;
 
-@SpringBootTest(classes = Application.class)
+@SpringBootTest()
+@ActiveProfiles("test")
 @TestPropertySource(locations = "classpath:test.properties")
+@Import(TestApiConfig.class)
 public class BuildInfoServiceIntegrationTest {
     @Autowired
     private BuildInfo service;
