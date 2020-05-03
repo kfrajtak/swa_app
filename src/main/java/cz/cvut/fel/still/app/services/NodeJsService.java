@@ -11,31 +11,9 @@ import org.springframework.web.client.RestTemplate;
 import java.time.Instant;
 import java.util.Arrays;
 
-//import org.springframework.web.reactive.function.client.WebClient;
-//import reactor.core.publisher.Mono;
-
 @Service
 @Slf4j
-public class JsonConsumerService {
-
-    // NOTE this does **not** work, HTTP traffic is not intercepted
-    /*public String getMessageWebClient() {
-        // https://www.baeldung.com/spring-5-webclient
-        String baseUrl = "http://localhost:3001";
-        WebClient client = WebClient.create(baseUrl);
-        log.info("Calling REST service (WebClient)");
-
-        Mono<MessageResponse> response = client.get()
-                .uri(baseUrl + "/?from=swa-app&type=webclient&ts=" + java.util.Date.from(Instant.now()).toString().replace(' ', '_'))
-                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                .accept(MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML)
-                .accept(MediaType.APPLICATION_JSON)
-                .retrieve()
-                .bodyToMono(MessageResponse.class);
-
-        return response.block().getMessage();
-    }*/
-
+public class NodeJsService {
     public String getMessageRestTemplate() {
         String baseUrl = "http://localhost:3001";
         log.info("Calling REST service (RestTemplate)");

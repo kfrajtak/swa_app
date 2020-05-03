@@ -1,8 +1,7 @@
 package cz.cvut.fel.still.app.services;
 
-//import co.elastic.apm.api.CaptureSpan;
-//import co.elastic.apm.api.Traced;
 import co.elastic.apm.api.CaptureSpan;
+import co.elastic.apm.api.Traced;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -14,12 +13,13 @@ import java.util.concurrent.CompletableFuture;
 @Slf4j
 public class SlowService {
 
-    private final JsonConsumerService jsonConsumerService;
+    private final NodeJsService nodeJsService;
+
     @Autowired
     private BuildInfo buildInfo;
 
-    public SlowService(JsonConsumerService jsonConsumerService) {
-        this.jsonConsumerService = jsonConsumerService;
+    public SlowService(NodeJsService jsonConsumerService) {
+        this.nodeJsService = jsonConsumerService;
     }
 
     @CaptureSpan("otherOperations")
@@ -27,18 +27,13 @@ public class SlowService {
         Thread.sleep(1500L);
         log.info("Doing some work ...");
 
-        //log.info("I'm in the original span");
+        log.info("I'm in the original span");
 
-        /*Span newSpan = tracer.nextSpan().name("newSpan").start();
-        try (Tracer.SpanInScope ws = tracer.withSpanInScope(newSpan.start())) {*/
         Thread.sleep(1000L);
-        //log.info("I'm in the new span doing some cool work that needs its own span");
-        /*} finally {
-            newSpan.finish();
-        }*/
+        log.info("I'm in the new span doing some cool work that needs its own span");
 
         //log.info("Message from REST service (1) = '{}'", jsonConsumerService.getMessageWebClient());
-        log.info("Message from REST service (1) = '{}'", jsonConsumerService.getMessageRestTemplate());
+        log.info("Message from REST service (1) = '{}'", nodeJsService.getMessageRestTemplate());
 
         //log.info("I'm in the original span");
         doWork();
@@ -63,7 +58,7 @@ public class SlowService {
         log.info("(1) I'm in the original span");
     }
 
-    //@Traced
+    @Traced
     public void doTracedWork() throws InterruptedException {
         Thread.sleep(2500L);
         log.info("(2) Doing some work ...");

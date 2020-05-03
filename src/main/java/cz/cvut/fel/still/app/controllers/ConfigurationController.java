@@ -63,7 +63,7 @@ public class ConfigurationController {
         return future;
     }
 
-    //@CaptureTransaction
+    @CaptureTransaction
     @GetMapping("/traced")
     public Map<String, String> traced() throws InterruptedException {
         slowService.doTracedWork();
