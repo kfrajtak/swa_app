@@ -1,0 +1,12 @@
+version: "2"
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile_app
+    image: swa_app_01
+    env_file: .env
+    volumes:
+      - ./config.properties:/usr/app/config.properties
+
+# docker build -t swa_app -f Dockerfile_app .        
