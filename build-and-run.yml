@@ -1,0 +1,13 @@
+version: "2"
+services:
+  application:
+    image: maven:latest
+    env_file: .env
+    volumes:
+      - m2:/var/maven/.m2
+      - ./src:/usr/app/src/
+      - ./pom.xml:/usr/app/pom.xml
+    command: mvn --file /usr/app/pom.xml install
+
+volumes:
+  m2:

@@ -6,7 +6,7 @@ COPY ./src $APP_HOME/src
 COPY pom.xml $APP_HOME/pom.xml
 RUN mvn package
 
-FROM openjdk:15-jdk-alpine3.11
+FROM openjdk:11-jre-slim-buster
 WORKDIR /usr/app/
 COPY --from=builder /root/dev/app/target/app-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
