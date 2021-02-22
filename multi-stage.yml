@@ -6,3 +6,8 @@ services:
       dockerfile: Dockerfile_app
     image: swa_app_01
     env_file: .env
+
+#networks:
+#  default:
+#    external:
+#      name: swa
