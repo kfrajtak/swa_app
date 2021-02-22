@@ -39,7 +39,7 @@ services:
 volumes:
   elasticsearch_data:
 
-networks:
-  default:
-    external:
-      name: swa
+#networks:
+#  default:
+#    external:
+#      name: swa
