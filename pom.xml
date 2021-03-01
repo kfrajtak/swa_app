@@ -305,7 +305,7 @@
         </plugins>
     </build>
 
-    <profiles>
+    <!--profiles>
         <profile>
             <id>integration</id>
             <properties>
@@ -313,7 +313,7 @@
                 <integration-tests.skip>false</integration-tests.skip>
             </properties>
         </profile>
-    </profiles>
+    </profiles-->
 
 
 </project>
