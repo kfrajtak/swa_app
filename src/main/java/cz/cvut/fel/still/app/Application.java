@@ -37,7 +37,7 @@ public class Application implements CommandLineRunner {
 
 	public static void main(String[] args) {
         ElasticApmAttacher.attach();
-
+				
 	    SpringApplication.run(Application.class, args);
 	}
 
@@ -64,7 +64,5 @@ public class Application implements CommandLineRunner {
 
 		String s = "Here the function getAlphaNumericString(n) generates a random number of length a string. This number is an index of a Character and this Character is appended in temporary local variable sb. In the end sb is returned.";
 		log.info("toolong = {}", s + s + s + s);
-
-		printUsersTask.execute();
 	}
 }

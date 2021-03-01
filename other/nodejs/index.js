@@ -16,7 +16,6 @@ app.get('/', function (req, res) {
   console.info('Called / with '  + from + ".")
   console.log(JSON.stringify(req.headers));
   console.info("transaction id=" + t.id + ", traceId = " + t.traceId);
-  console.info(t);
   res.json({message:'Hello World! ' + from});  
 })
 
