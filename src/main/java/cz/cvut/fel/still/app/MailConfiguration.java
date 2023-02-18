@@ -4,6 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Email;
 
 import lombok.*;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -27,7 +28,7 @@ public class MailConfiguration {
     @Setter
     private int port;
 
-    @Pattern(regexp = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$")
+    @Email
     @Getter
     @Setter
     @NotBlank
