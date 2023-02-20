@@ -1,0 +1,17 @@
+version: "2"
+services:
+  application:
+    build:
+      context: .
+      dockerfile: Dockerfile_app
+    image: swa_app_01
+    environment:
+      - MAIL_HOSTNAME=host
+      - MAIL_PORT=3071
+      - MAIL_FROM=admin@domain.com
+      - WHOAMI=I am docker-compose
+    network_mode: bridge
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"

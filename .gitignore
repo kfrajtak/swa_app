@@ -67,3 +67,5 @@ fabric.properties
 # Maven
 log/
 target/
+
+docker/elk/logs
