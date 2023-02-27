@@ -80,8 +80,7 @@ services:
     volumes:
       - ./fluentd/conf:/fluentd/etc
     depends_on:
-      elasticsearch:
-        condition: service_healthy
+      - elasticsearch
     ports:
       - "24224:24224"
       - "24224:24224/udp"
