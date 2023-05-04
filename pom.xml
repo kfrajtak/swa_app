@@ -22,6 +22,8 @@
         <unit-tests.skip>false</unit-tests.skip>
         <integration-tests.skip>true</integration-tests.skip>
         <io-rest-assured.version>4.0.0</io-rest-assured.version>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -57,7 +59,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.6</version>
+            <version>1.18.26</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -266,6 +269,14 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <configuration>
                     <delimiters>
@@ -304,16 +315,4 @@
             </plugin>
         </plugins>
     </build>
-
-    <!--profiles>
-        <profile>
-            <id>integration</id>
-            <properties>
-                <unit-tests.skip>false</unit-tests.skip>
-                <integration-tests.skip>false</integration-tests.skip>
-            </properties>
-        </profile>
-    </profiles-->
-
-
 </project>

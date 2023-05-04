@@ -14,10 +14,10 @@ services:
       - 9901:8080
     networks:
       - swa
-    #logging:
-    #  driver: fluentd
-    #  options:
-    #    fluentd-address: localhost:24224
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: localhost:24224
     environment:
     - "ELASTIC_APM_SERVICE_NAME=swa-app"
     - "ELASTIC_APM_APPLICATION_PACKAGES=cz.cvut.fel.still.app"
@@ -28,8 +28,19 @@ services:
       - -jar
       - /usr/app/app.jar
       - --spring.config.location=/usr/app/application.properties
-
 networks:
   swa:
     external:
       name: swa
+
+#  application:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile_app
+#    image: swa_app_01
+#    environment:
+#      - MAIL_HOSTNAME=host
+#      - MAIL_PORT=3071
+#      - MAIL_FROM=admin@domain.com
+#      - WHOAMI=I am docker-compose
+#    network_mode: bridge
