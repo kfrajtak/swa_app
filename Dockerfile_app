@@ -1,4 +1,4 @@
-FROM maven:3.6.3 as builder
+FROM maven:3.6.3-jdk-8 as builder
 ENV APP_HOME=/root/dev/app/
 RUN mkdir -p $APP_HOME/src
 WORKDIR $APP_HOME
